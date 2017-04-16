@@ -39,7 +39,6 @@ GameObject:
   - component: {fileID: 23358209248070888}
   - component: {fileID: 54556813698862842}
   - component: {fileID: 65403074006685808}
-  - component: {fileID: 96548679821158904}
   - component: {fileID: 114447459799738596}
   - component: {fileID: 114299461017631974}
   m_Layer: 0
@@ -56,13 +55,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1336971068703962}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3, y: 0.15, z: -2.8}
+  m_LocalPosition: {x: 8.74, y: 0.15, z: -6.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4761438755657838}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!4 &4761438755657838
 Transform:
   m_ObjectHideFlags: 1
@@ -89,7 +88,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: e1b6311e07de1d949938adc5f79eb716, type: 2}
+  - {fileID: 2100000, guid: 20fb22123c73c314a834cd635693743a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -113,7 +112,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1336971068703962}
-  m_Mesh: {fileID: 4300002, guid: 456fa4bfa93c03a459fa811b351bec17, type: 3}
+  m_Mesh: {fileID: 4300000, guid: d3105ff625c39fe4e8395158f5f6352c, type: 3}
 --- !u!54 &54556813698862842
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -141,104 +140,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.29999998, y: 2.1, z: 0.52704847}
   m_Center: {x: 0, y: 1.0305231, z: 0}
---- !u!96 &96548679821158904
-TrailRenderer:
-  serializedVersion: 2
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1336971068703962}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 0
-  m_ReflectionProbeUsage: 0
-  m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_Time: Infinity
-  m_Parameters:
-    serializedVersion: 2
-    widthMultiplier: 0.2
-    widthCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 2
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    colorGradient:
-      key0:
-        serializedVersion: 2
-        rgba: 4278190335
-      key1:
-        serializedVersion: 2
-        rgba: 4278190335
-      key2:
-        serializedVersion: 2
-        rgba: 0
-      key3:
-        serializedVersion: 2
-        rgba: 0
-      key4:
-        serializedVersion: 2
-        rgba: 0
-      key5:
-        serializedVersion: 2
-        rgba: 0
-      key6:
-        serializedVersion: 2
-        rgba: 0
-      key7:
-        serializedVersion: 2
-        rgba: 0
-      ctime0: 0
-      ctime1: 65535
-      ctime2: 0
-      ctime3: 0
-      ctime4: 0
-      ctime5: 0
-      ctime6: 0
-      ctime7: 0
-      atime0: 0
-      atime1: 65535
-      atime2: 0
-      atime3: 0
-      atime4: 0
-      atime5: 0
-      atime6: 0
-      atime7: 0
-      m_Mode: 0
-      m_NumColorKeys: 2
-      m_NumAlphaKeys: 2
-    numCornerVertices: 0
-    numCapVertices: 0
-    alignment: 0
-    textureMode: 0
-  m_MinVertexDistance: 0.1
-  m_Autodestruct: 0
 --- !u!96 &96923416856006272
 TrailRenderer:
   serializedVersion: 2
@@ -253,7 +154,7 @@ TrailRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -290,10 +191,10 @@ TrailRenderer:
     colorGradient:
       key0:
         serializedVersion: 2
-        rgba: 4278190335
+        rgba: 4285267712
       key1:
         serializedVersion: 2
-        rgba: 4278190335
+        rgba: 4285595401
       key2:
         serializedVersion: 2
         rgba: 0
@@ -348,6 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61fdfa56ae747324890c5f31228952a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lastPosition: []
 --- !u!114 &114447459799738596
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -359,6 +261,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be9cea8fefc7df6479bd032d5a919efb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PlayerNumber: 1
+  m_PlayerNumber: 2
   m_Speed: 6
   m_TurnSpeed: 180
