@@ -3,19 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerPositionManager : MonoBehaviour {
-    public List<Vector2> lastPosition = new List<Vector2>();
+    public List<Vector2> lastPositions = new List<Vector2>();
 
     private Vector2 position;
     private Vector2 previousPosition;
     private List<PlayerPositionManager> enemies = new List<PlayerPositionManager>();
-    
+    private MapManagement mapManager;
+
+    void Start() {
+        foreach (var enemy in GameObject.FindGameObjectsWithTag("Player")) {
+            if(enemy != gameObject) {
+                enemies.Add(enemy.GetComponent<PlayerPositionManager>());
+            }
+        }
+
+        mapManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<MapManagement>();
+    }
+
     void Update() {
-        position = new Vector2(Mathf.RoundToInt(Mathf.Abs(transform.position.x)), Mathf.RoundToInt(Mathf.Abs(transform.position.z)));
+        position = new Vector2(Mathf.FloorToInt(Mathf.Abs(transform.position.x)), Mathf.FloorToInt(Mathf.Abs(transform.position.z)));
 
         if (position != previousPosition) {
             // If the new pos is equal to one of the saved points
-            if (lastPosition.Count > 0 && lastPosition.Exists(pos => pos == position)) {
+            if (lastPositions.Count > 0 && lastPositions.Exists(pos => pos == position)) {
                 // Launch detection of the building in the closed area and let GameManager add the points
+                // TODO : Capture
                 Debug.Log("Loop detected");
 
                 // Remove trail
@@ -23,14 +35,12 @@ public class PlayerPositionManager : MonoBehaviour {
             }
             else {
                 // Save new pos in the array
-                lastPosition.Add(position);
+                lastPositions.Add(position);
 
                 // If the new pos is in one of the enemies array, stop its trail
                 foreach (var enemy in enemies) {
-                    if(enemy.lastPosition.Count > 0) {
-                        Debug.Log("More than one spot");
-                        if(enemy.lastPosition.Exists(pos => pos == position)) {
-                            Debug.Log("Lel");
+                    if(enemy.lastPositions.Count > 0) {
+                        if(enemy.lastPositions.Exists(pos => pos == position)) {
                             enemy.resetTrail();
                         }
                     }
@@ -43,11 +53,15 @@ public class PlayerPositionManager : MonoBehaviour {
         if(Input.GetKeyDown(KeyCode.Space)) {
             resetTrail();
         }
+        
+        if (Input.GetButtonDown("B_gamepad")) {
+            Debug.Log(Mathf.FloorToInt(Mathf.Abs(transform.position.x)) + " ; " + Mathf.FloorToInt(Mathf.Abs(transform.position.z)));
+        }
     }
 
     public void resetTrail() {
         // Clear the list of last positions
-        lastPosition.Clear();
+        lastPositions.Clear();
 
         // Remove trail
         StartCoroutine("clearTrail");
