@@ -54,7 +54,7 @@ public class PlayerPositionManager : MonoBehaviour {
             resetTrail();
         }
         
-        if (Input.GetButtonDown("B_gamepad")) {
+        if (Input.GetButtonDown("P1B")) {
             Debug.Log(Mathf.FloorToInt(Mathf.Abs(transform.position.x)) + " ; " + Mathf.FloorToInt(Mathf.Abs(transform.position.z)));
         }
     }
