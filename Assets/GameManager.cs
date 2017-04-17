@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
+    public GameObject[] playerPositions;
     public List<CaptureManagement> buildings = new List<CaptureManagement>();
 
     void Awake() {
-        GameSettings gs = GameObject.Find("GameSettings").GetComponent<GameSettings>();
+        // GameSettings gs = GameObject.Find("GameSettings").GetComponent<GameSettings>();
     }
 
     void Start () {
