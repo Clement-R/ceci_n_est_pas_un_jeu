@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class CaptureManagement : MonoBehaviour {
     public List<Vector2> pos;
+    public bool taken = false;
+    public int score = 0;
 
     private List<PlayerPositionManager> players = new List<PlayerPositionManager>();
-    bool taken = false;
 
     void Start() {
         foreach (var player in GameObject.FindGameObjectsWithTag("Player")) {
@@ -29,8 +30,8 @@ public class CaptureManagement : MonoBehaviour {
                 if (contained) {
                     Debug.Log("TAKEN !");
                     foreach (var obj in GetComponentsInChildren<Renderer>()) {
-                        // TODO : Change for player color
-                        obj.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.red);
+                        player.score += score;
+                        obj.GetComponent<Renderer>().material.SetColor("_EmissionColor", player.color);
                     }
                     taken = true;
                 }

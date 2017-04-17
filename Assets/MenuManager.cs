@@ -55,7 +55,7 @@ public class MenuManager : MonoBehaviour {
     }
 
     public void launchGame() {
-        SceneManager.LoadScene("game");
+        SceneManager.LoadScene("lobby");
     }
 
     void showControls() {

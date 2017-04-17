@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LobbyManager : MonoBehaviour {
     public Image canvas;
@@ -27,10 +28,11 @@ public class LobbyManager : MonoBehaviour {
     private int indexPlayer = 0;
     private int playerIndexName = 1;
     private int playerIndexVehicle = 1;
+    private int vehicleId = 0;
 
     private Dictionary<int, int> playersId = new Dictionary<int, int>();
     private Dictionary<int, string> playersNames = new Dictionary<int, string>();
-    private Dictionary<int, GameObject> playersVehicle = new Dictionary<int, GameObject>();
+    private Dictionary<int, string> playersVehicle = new Dictionary<int, string>();
 
     private string[] playerNames = new string[4];
 
@@ -135,19 +137,86 @@ public class LobbyManager : MonoBehaviour {
         if(vehicleSelection) {
             if(playerIndexVehicle < playersId.Count + 1) {
                 if (Input.GetButtonDown("P" + playersId[playerIndexVehicle] + "A")) {
-                    // playersVehicle[playerIndexVehicle] = none;
+                    switch(vehicleId) {
+                        case 0:
+                            playersVehicle.Add(playerIndexVehicle, "fire");
+                            break;
+                        case 1:
+                            playersVehicle.Add(playerIndexVehicle, "icecream");
+                            break;
+                        case 2:
+                            playersVehicle.Add(playerIndexVehicle, "garbage");
+                            break;
+                    }
+                    Destroy(vehicles[vehicleId]);
+                    vehicles[vehicleId] = null;
                     playerIndexVehicle++;
                     Debug.Log("A");
+
+                    while (vehicles[vehicleId] == null) {
+                        Debug.Log(vehicles[vehicleId]);
+                        vehicleId++;
+                        if (vehicleId > vehicles.Length - 1) {
+                            vehicleId = 0;
+                        }
+                    }
+
+                    foreach (var vehicle in vehicles) {
+                        if (vehicle != null) {
+                            vehicle.SetActive(false);
+                        }
+                    }
+                    vehicles[vehicleId].SetActive(true);
+
                 } else if(Input.GetAxisRaw("Horizontal" + playersId[playerIndexVehicle]) != 0 && canMove) {
                     canMove = false;
-                    Debug.Log("Move h");
+                    if (Input.GetAxisRaw("Horizontal" + playersId[playerIndexVehicle]) > 0) {
+                        vehicleId++;
+                        if (vehicleId > vehicles.Length - 1) {
+                            vehicleId = 0;
+                        }
+
+                        while (vehicles[vehicleId] == null) {
+                            vehicleId++;
+                            if (vehicleId > vehicles.Length - 1) {
+                                vehicleId = 0;
+                            }
+                        }
+
+                    } else if (Input.GetAxisRaw("Horizontal" + playersId[playerIndexVehicle]) < 0) {
+                        vehicleId--;
+                        if (vehicleId < 0) {
+                            vehicleId = vehicles.Length - 1;
+                        }
+
+                        while (vehicles[vehicleId] == null) {
+                            vehicleId--;
+                            if (vehicleId < 0) {
+                                vehicleId = vehicles.Length - 1;
+                            }
+                        }
+                    }
+
+                    foreach (var vehicle in vehicles) {
+                        if(vehicle != null) {
+                            vehicle.SetActive(false);
+                        }
+                    }
+                    vehicles[vehicleId].SetActive(true);
+
+                    StartCoroutine("move");
                 }
+            } else {
+                GameSettings gs = GameObject.Find("GameSettings").GetComponent<GameSettings>();
+                gs.playersVehicle = playersVehicle;
+                SceneManager.LoadScene("game");
             }
+
         }
 	}
 
     IEnumerator move() {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.3f);
         canMove = true;
     }
 }

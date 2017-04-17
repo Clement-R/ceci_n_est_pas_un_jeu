@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerPositionManager : MonoBehaviour {
     public List<Vector2> lastPositions = new List<Vector2>();
+    public int score = 0;
+    public Text scoreDisplay;
+    public Color color;
 
     private Vector2 position;
     private Vector2 previousPosition;
@@ -21,6 +25,8 @@ public class PlayerPositionManager : MonoBehaviour {
     }
 
     void Update() {
+        scoreDisplay.text = ""+score;
+
         position = new Vector2(Mathf.FloorToInt(Mathf.Abs(transform.position.x)), Mathf.FloorToInt(Mathf.Abs(transform.position.z)));
 
         if (position != previousPosition) {
