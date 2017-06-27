@@ -8,6 +8,7 @@ public class PlayerPositionManager : MonoBehaviour {
     public int score = 0;
     public Text scoreDisplay;
     public Color color;
+    public Material capture;
 
     private Vector2 position;
     private Vector2 previousPosition;

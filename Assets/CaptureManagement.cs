@@ -31,7 +31,13 @@ public class CaptureManagement : MonoBehaviour {
                     Debug.Log("TAKEN !");
                     foreach (var obj in GetComponentsInChildren<Renderer>()) {
                         player.score += score;
-                        obj.GetComponent<Renderer>().material.SetColor("_EmissionColor", player.color);
+
+                        obj.material.shader = new Shader();
+
+                        obj.material.EnableKeyword("_EMISSION");
+                        obj.material = player.capture;
+                        // obj.material.SetColor("_EmissionColor", player.color);
+                        // obj.GetComponent<Renderer>().material.SetColor("_EmissionColor", player.color);
                     }
                     taken = true;
                 }
