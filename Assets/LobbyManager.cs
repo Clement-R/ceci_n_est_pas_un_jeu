@@ -41,7 +41,9 @@ public class LobbyManager : MonoBehaviour {
 	}
 	
 	void Update () {
-        if(playerSelection) {
+
+        #region NUMBER_PLAYER_SELECTION
+        if (playerSelection) {
             if (Input.GetButtonDown("P1A")) {
                 if(!playersId.ContainsValue(1)) {
                     indexPlayer++;
@@ -101,7 +103,9 @@ public class LobbyManager : MonoBehaviour {
                 }
             }
         }
+        #endregion NUMBER_PLAYER_SELECTION
 
+        #region NAME_SELECTION
 		if(nameSelection) {
             if (indexChar <= maxChar) {
                 if (Input.GetButtonDown("P"+ playersId[playerIndexName] + "A")) {
@@ -133,8 +137,10 @@ public class LobbyManager : MonoBehaviour {
                 }
             }
         }
+        #endregion NAME_SELECTION
 
-        if(vehicleSelection) {
+        #region VEHICLE_SELECTION
+        if (vehicleSelection) {
             if(playerIndexVehicle < playersId.Count + 1) {
                 if (Input.GetButtonDown("P" + playersId[playerIndexVehicle] + "A")) {
                     switch(vehicleId) {
@@ -147,14 +153,15 @@ public class LobbyManager : MonoBehaviour {
                         case 2:
                             playersVehicle.Add(playerIndexVehicle, "garbage");
                             break;
+                        case 3:
+                            playersVehicle.Add(playerIndexVehicle, "police");
+                            break;
                     }
                     Destroy(vehicles[vehicleId]);
                     vehicles[vehicleId] = null;
                     playerIndexVehicle++;
-                    Debug.Log("A");
 
                     while (vehicles[vehicleId] == null) {
-                        Debug.Log(vehicles[vehicleId]);
                         vehicleId++;
                         if (vehicleId > vehicles.Length - 1) {
                             vehicleId = 0;
@@ -209,11 +216,12 @@ public class LobbyManager : MonoBehaviour {
             } else {
                 GameSettings gs = GameObject.Find("GameSettings").GetComponent<GameSettings>();
                 gs.playersVehicle = playersVehicle;
+                
                 SceneManager.LoadScene("game");
             }
-
         }
-	}
+        #endregion VEHICLE_SELECTION
+    }
 
     IEnumerator move() {
         yield return new WaitForSeconds(0.3f);

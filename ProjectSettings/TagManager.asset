@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - GameManager
+  - Score1
+  - Score2
+  - Score3
+  - Score4
   layers:
   - Default
   - TransparentFX

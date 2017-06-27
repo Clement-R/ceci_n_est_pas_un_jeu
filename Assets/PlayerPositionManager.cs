@@ -23,6 +23,8 @@ public class PlayerPositionManager : MonoBehaviour {
         }
 
         mapManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<MapManagement>();
+
+        scoreDisplay = GameObject.Find("Score" + GetComponent<PlayerMovement>().m_PlayerNumber).GetComponent<Text>();
     }
 
     void Update() {
